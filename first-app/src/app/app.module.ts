@@ -7,6 +7,7 @@ import { CalculatorComponent } from './calculator/calculator.component';
 import { CalculatorTwoComponent} from './calculator/calculatorTwo.component';
 import { CalculatorResultComponent } from './calculator/calculatorResult.component';
 import { CalculatorModel } from './calculator/CalculatorModel';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CalculatorModel } from './calculator/CalculatorModel';
     , CalculatorComponent
     , CalculatorTwoComponent
     , CalculatorResultComponent
+    , ProductsComponent
   ],
   imports: [
   	/* Other dependent modules*/

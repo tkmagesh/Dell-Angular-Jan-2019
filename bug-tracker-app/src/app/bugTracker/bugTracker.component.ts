@@ -1,20 +1,6 @@
 import { Component } from '@angular/core';
-
-/*
-class Bug{
-	constructor(public name : string, public isClosed : boolean = false){
-
-	}
-	toggle(){
-		this.isClosed = !this.isClosed;
-	}
-}
-*/
-
-interface Bug{
-	name : string,
-	isClosed : boolean
-}
+import { Bug } from './models/Bug';
+import { BugOperationsService } from './services/bugOperations.service';
 
 @Component({
 	selector : 'app-bug-tracker',
@@ -23,16 +9,18 @@ interface Bug{
 export class BugTrackerComponent{
 	bugs : Bug[] = [];
 
+	constructor(private bugOperations : BugOperationsService){
+
+	}
+
 	onAddNewClick(newBugName : string){
 		/* let newBug = new Bug(newBugName); */
-		let newBug : Bug = {
-			name : newBugName,
-			isClosed : false
-		} 
+		let newBug = this.bugOperations.createNew(newBugName);
 		this.bugs.push(newBug);
 	}
 
 	onBugClick(bugToToggle : Bug){
-		bugToToggle.isClosed = !bugToToggle.isClosed;
+		this.bugOperations.toggle(bugToToggle);
 	}
 }
+

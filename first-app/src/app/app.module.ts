@@ -6,6 +6,7 @@ import { GreeterComponent } from './greeter/greeter.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { CalculatorTwoComponent} from './calculator/calculatorTwo.component';
 import { CalculatorResultComponent } from './calculator/calculatorResult.component';
+import { CalculatorModel } from './calculator/CalculatorModel';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CalculatorResultComponent } from './calculator/calculatorResult.compone
   ],
   providers: [
   	/* Non UI (services) */
+    CalculatorModel
   ],
   bootstrap: [AppComponent, GreeterComponent]
 })

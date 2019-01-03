@@ -6,5 +6,10 @@ import { CalculatorModel } from './CalculatorModel';
 	templateUrl : 'calculator.component.html'
 })
 export class CalculatorComponent{
-	model : CalculatorModel = new CalculatorModel();
+	
+	//model : CalculatorModel = new CalculatorModel();
+
+	constructor(private model : CalculatorModel){
+		
+	}
 }

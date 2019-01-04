@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { BugOperationsService } from './bugTracker/services/bugOperations.service';
 import { BugStorageService } from './bugTracker/services/bugStorage.service';
+import { AppEventService } from './bugTracker/services/appEvent.service';
 
 import { AppComponent } from './app.component';
 import { BugTrackerComponent } from './bugTracker/bugTracker.component';
@@ -32,6 +33,7 @@ import { BugEditComponent } from './bugTracker/views/bugEdit.component';
   providers: [
   	BugOperationsService
     , BugStorageService
+    , AppEventService
   ],
   bootstrap: [AppComponent]
 })

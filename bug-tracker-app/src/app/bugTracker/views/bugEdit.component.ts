@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { BugOperationsService } from '../services/bugOperations.service';
+import { AppEventService } from '../services/appEvent.service';
 
 import { Bug } from '../models/Bug';
 
@@ -20,11 +21,12 @@ export class BugEditComponent{
 	@Output()
 	create : EventEmitter<Bug> = new EventEmitter<Bug>();
 
-	constructor(private bugOperations : BugOperationsService){
+	constructor(private bugOperations : BugOperationsService, private appEvent : AppEventService){
 
 	}
 	onAddNewClick(){
 		let newBug = this.bugOperations.createNew(this.newBugName);
 		this.create.emit(newBug);
+		this.appEvent.emit('appMessage', 'A new bug is created');
 	}
 }

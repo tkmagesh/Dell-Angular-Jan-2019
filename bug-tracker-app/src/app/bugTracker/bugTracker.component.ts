@@ -11,12 +11,10 @@ export class BugTrackerComponent implements OnInit{
 
 	bugSortAttr : string = '';
 	bugSortDesc : boolean = false;
+
+	newBugName = '';
 	
 	constructor(private bugOperations : BugOperationsService){
-		/*this.bugs.push(this.bugOperations.createNew('Server communication failure'));
-		this.bugs.push(this.bugOperations.createNew('Data integrity checks failed'));
-		this.bugs.push(this.bugOperations.createNew('User actions not recognized'));
-		this.bugs.push(this.bugOperations.createNew('Application not responding'));*/
 		
 	}
 
@@ -24,10 +22,11 @@ export class BugTrackerComponent implements OnInit{
 		this.bugs = this.bugOperations.getAll();
 	}
 
-	onAddNewClick(newBugName : string){
+	onAddNewClick(){
 		/* let newBug = new Bug(newBugName); */
-		let newBug = this.bugOperations.createNew(newBugName);
-		this.bugs.push(newBug);
+		let newBug = this.bugOperations.createNew(this.newBugName);
+		//this.bugs.push(newBug);
+		this.bugs = [...this.bugs, newBug];
 	}
 
 	onBugClick(bugToToggle : Bug){

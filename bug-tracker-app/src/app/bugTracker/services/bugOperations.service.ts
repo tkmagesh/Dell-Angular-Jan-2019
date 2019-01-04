@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Bug } from '../models/Bug';
 import { BugStorageService } from './bugStorage.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class BugOperationsService{
 	constructor(private bugStorage : BugStorageService){
 
 	}
-	createNew(bugName : string) : Promise<Bug> {
+	createNew(bugName : string) : Observable<Bug> {
 		let newBugData : Bug = {
 			id : 0,
 			name : bugName,
@@ -17,14 +18,14 @@ export class BugOperationsService{
 		return this.bugStorage.save(newBugData);
 	}
 
-	toggle(bugToToggle : Bug) : Promise<Bug> {
+	toggle(bugToToggle : Bug) : Observable<Bug> {
 		let toggledBug  = {...bugToToggle, isClosed : !bugToToggle.isClosed};
 		return this.bugStorage.save(toggledBug);
 	}
-	getAll() : Promise<Bug[]> {
+	getAll() : Observable<Bug[]> {
 		return this.bugStorage.getAll();
 	}
-	remove(bug : Bug) : Promise<any> {
+	remove(bug : Bug) : Observable<any> {
 		return this.bugStorage.remove(bug);
 	}
 }

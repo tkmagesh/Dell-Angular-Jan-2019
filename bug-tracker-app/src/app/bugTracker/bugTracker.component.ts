@@ -12,8 +12,6 @@ export class BugTrackerComponent implements OnInit{
 	bugSortAttr : string = '';
 	bugSortDesc : boolean = false;
 
-	
-	
 	constructor(private bugOperations : BugOperationsService){
 		
 	}

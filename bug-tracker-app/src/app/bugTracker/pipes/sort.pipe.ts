@@ -23,7 +23,7 @@ export class SortPipe implements PipeTransform {
 	}
 
 	transform(data : any[], attrName : string , isDesc : boolean = false) : any[] {
-		console.log('sort.transform triggered');
+		//console.log('sort.transform triggered');
 		if (!data || !data.length || !attrName) return data;
 		let comparer = this.getComparerFor(attrName);
 		if (isDesc)

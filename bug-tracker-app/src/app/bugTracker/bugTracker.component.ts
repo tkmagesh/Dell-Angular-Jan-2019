@@ -12,7 +12,7 @@ export class BugTrackerComponent implements OnInit{
 	bugSortAttr : string = '';
 	bugSortDesc : boolean = false;
 
-	newBugName = '';
+	
 	
 	constructor(private bugOperations : BugOperationsService){
 		
@@ -22,15 +22,13 @@ export class BugTrackerComponent implements OnInit{
 		this.bugs = this.bugOperations.getAll();
 	}
 
-	onAddNewClick(){
-		/* let newBug = new Bug(newBugName); */
-		let newBug = this.bugOperations.createNew(this.newBugName);
-		//this.bugs.push(newBug);
+	onBugCreated(newBug : Bug){
 		this.bugs = [...this.bugs, newBug];
 	}
 
 	onBugClick(bugToToggle : Bug){
-		this.bugOperations.toggle(bugToToggle);
+		let toggledBug = this.bugOperations.toggle(bugToToggle);
+		this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ? toggledBug : bug);
 	}
 
 	onRemoveClosedClick(){
@@ -38,10 +36,6 @@ export class BugTrackerComponent implements OnInit{
 			.filter(bug => bug.isClosed)
 			.forEach(closedBug => this.bugOperations.remove(closedBug));
 		this.bugs = this.bugs.filter(bug => !bug.isClosed);
-	}
-
-	getClosedCount(){
-		return this.bugs.reduce((result, bug) => bug.isClosed ? ++result : result, 0);
 	}
 }
 

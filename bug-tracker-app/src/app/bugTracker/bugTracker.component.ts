@@ -17,7 +17,9 @@ export class BugTrackerComponent implements OnInit{
 	}
 
 	ngOnInit(){
-		this.bugs = this.bugOperations.getAll();
+		this.bugOperations
+			.getAll()
+			.then(bugs => this.bugs = bugs);
 	}
 
 	onBugCreated(newBug : Bug){
@@ -25,15 +27,20 @@ export class BugTrackerComponent implements OnInit{
 	}
 
 	onBugClick(bugToToggle : Bug){
-		let toggledBug = this.bugOperations.toggle(bugToToggle);
-		this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ? toggledBug : bug);
+		this.bugOperations
+			.toggle(bugToToggle)
+			.then(toggledBug => this.bugs = this.bugs.map(bug => bug.id === bugToToggle.id ? toggledBug : bug));
+		
 	}
 
 	onRemoveClosedClick(){
 		this.bugs
 			.filter(bug => bug.isClosed)
-			.forEach(closedBug => this.bugOperations.remove(closedBug));
-		this.bugs = this.bugs.filter(bug => !bug.isClosed);
+			.forEach(closedBug => {
+				this.bugOperations
+					.remove(closedBug)
+					.then(_ => this.bugs = this.bugs.filter(bug => !bug.isClosed))
+			});
 	}
 }
 

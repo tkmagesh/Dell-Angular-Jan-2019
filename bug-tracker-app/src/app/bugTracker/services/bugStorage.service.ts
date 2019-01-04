@@ -1,29 +1,30 @@
 import { Bug } from '../models/Bug';
+import axios from 'axios';
 
 export class BugStorageService{
-	private storage = window.localStorage;
-	private currentBugId = 0;
-	getAll() : Bug[] {
-		let result : Bug[] = [];
-		for(let index = 0, count = this.storage.length; index < count; index++){
-			let key = this.storage.key(index),
-				rawData = this.storage.getItem(key),
-				bug = JSON.parse(rawData);
-			this.currentBugId = this.currentBugId > bug.id ? this.currentBugId : bug.id;
-			result.push(bug);
-		}
-		return result;
+	private apiEndPoint = 'http://localhost:3000/bugs';
+
+	getAll() : Promise<Bug[]> {
+		return axios
+			.get(this.apiEndPoint)
+			.then(response => response.data);
 	}
 
-	save(bug : Bug) : Bug {
+	save(bug : Bug) : Promise<Bug> {
 		if (bug.id === 0) /* new bug*/ {
-			bug.id = ++this.currentBugId;
+			return axios
+				.post(this.apiEndPoint, bug)
+				.then(response => response.data);
+		} else {
+			return axios
+				.put(`${this.apiEndPoint}/${bug.id}`, bug)
+				.then(response => response.data);	
 		}
-		this.storage.setItem(bug.id.toString(), JSON.stringify(bug));
-		return bug;
 	}
 
-	remove(bug : Bug) : void {
-		this.storage.removeItem(bug.id.toString());
+	remove(bug : Bug) : Promise<any> {
+		return axios
+			.delete(`${this.apiEndPoint}/${bug.id}`)
+			.then(response => response.data);
 	}
 }

@@ -8,11 +8,16 @@
       "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur aliquam id pariatur ipsa expedita nesciunt doloribus facilis architecto quisquam totam veniam odio, minima, labore deleniti, neque nam quia amet eveniet."
     },
     {
-      "id": 2,
-      "name": "User actions not recognized",
+      "id": 3,
+      "name": "Application is not responding",
       "isClosed": false,
-      "createdAt": "2018-10-18T09:41:15.610Z",
-      "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur aliquam id pariatur ipsa expedita nesciunt doloribus facilis architecto quisquam totam veniam odio, minima, labore deleniti, neque nam quia amet eveniet."
+      "createdAt": "2019-01-04T10:56:23.968Z"
+    },
+    {
+      "id": 4,
+      "name": "Events are not triggered",
+      "isClosed": false,
+      "createdAt": "2019-01-04T10:58:11.838Z"
     }
   ],
   "projects": [
